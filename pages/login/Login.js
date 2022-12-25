@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Api from "../../api/Api";
 import {
   StyleSheet,
   Text,
@@ -11,12 +12,28 @@ import {
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [getError, setGetError] = React.useState("");
+  const [checked, setChecked] = React.useState(false);
   function loginHandle() {
-    navigation.navigate("Dashboard");
+    const data = {
+      email,
+      password,
+    };
+    Api.post("mis/login", data).then((res) => {
+      if (res.data.status === 200) {
+        navigation.navigate("Dashboard", { data: res.data });
+      } else if (res.data.status === 401) {
+        setGetError(res.data.message);
+      } else if (res.data.status === 402) {
+        setGetError(res.data.message);
+      } else {
+        setGetError("some thing is missing");
+      }
+    });
   }
   return (
     <View style={styles.container}>
-      {/* <Image style={styles.image} source={require("./assets/log2.png")} /> */}
+      <Image style={styles.image} source={require("../../assets/mono.jpg")} />
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
