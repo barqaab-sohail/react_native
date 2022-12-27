@@ -19,43 +19,26 @@ export default class Dashboard extends Component {
           id: 1,
           title: "HR",
           image: require("../../assets/hr-50.png"),
+          nav: "Hr Home",
         },
         {
           id: 1,
           title: "Projects",
           image: require("../../assets/projects-48.png"),
+          nav: "Project Home",
         },
         {
           id: 2,
           title: "Assets",
           image: require("../../assets/assets-64.png"),
-        },
-        {
-          id: 3,
-          title: "Option 4",
-          image: require("../../assets/hr-50.png"),
-        },
-        {
-          id: 4,
-          title: "Option 5",
-          image: require("../../assets/hr-50.png"),
-        },
-        {
-          id: 5,
-          title: "Option 6",
-          image: require("../../assets/hr-50.png"),
-        },
-        {
-          id: 6,
-          title: "Option 7",
-          image: require("../../assets/hr-50.png"),
+          nav: "Hr Home",
         },
       ],
     };
   }
 
   clickEventListener(item) {
-    Alert.alert(item.title);
+    this.props.navigation.navigate(item.nav);
   }
 
   render() {
