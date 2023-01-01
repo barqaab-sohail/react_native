@@ -5,8 +5,6 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Alert,
-  ScrollView,
   FlatList,
 } from "react-native";
 

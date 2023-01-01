@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Api from "../../api/Api";
 import { Formik } from "formik";
 import React from "react";
@@ -32,22 +33,23 @@ const LoginForm = ({ navigation }) => {
             email: values.email,
             password: values.password,
           };
+          AsyncStorage.setItem("@user_data", dummyData.userName);
           navigation.navigate("Dashboard", { data: dummyData });
-          //   Api.post("mis/login", data).then((res) => {
-          //     if (res.data.status === 200) {
-          //       actions.resetForm();
-          //       navigation.navigate("Dashboard", { data: res.data });
-          //     } else if (res.data.status === 401) {
-          //       actions.setFieldError("email", res.data.message);
-          //       //setGetError(res.data.message);
-          //     } else if (res.data.status === 402) {
-          //       actions.setFieldError("email", res.data.message);
-          //       //setGetError(res.data.message);
-          //     } else {
-          //       actions.setFieldError("email", "some thing is missing");
-          //       //setGetError("some thing is missing");
-          //     }
-          //   });
+          // Api.post("mis/login", data).then((res) => {
+          //   if (res.data.status === 200) {
+          //     actions.resetForm();
+          //     navigation.navigate("Dashboard", { data: res.data });
+          //   } else if (res.data.status === 401) {
+          //     actions.setFieldError("email", res.data.message);
+          //     //setGetError(res.data.message);
+          //   } else if (res.data.status === 402) {
+          //     actions.setFieldError("email", res.data.message);
+          //     //setGetError(res.data.message);
+          //   } else {
+          //     actions.setFieldError("email", "some thing is missing");
+          //     //setGetError("some thing is missing");
+          //   }
+          // });
         }}
       >
         {(props) => (

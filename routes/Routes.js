@@ -1,29 +1,54 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet } from "react-native";
-//import Login from "./pages/login/Login";
-import Login from "../pages/login/Login";
-import Dashboard from "../pages/dashboard/Dashboard";
+import { StyleSheet, Button } from "react-native";
+import Dashboardf from "../pages/dashboard/Dashboardf";
 import LoginForm from "../components/login/LoginForm";
-import HrHome from "../pages/hr/HrHome";
+import EmployeeList from "../pages/hr/EmployeeList";
+import EmpList from "../pages/hr/EmpList";
 import ProjectHome from "../pages/project/ProjectHome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const Stack = createNativeStackNavigator();
+// const AppNavigator = createStackNavigator(
+//   {
+//     Launch: {
+//       screen: LaunchComponent,
+//     },
+//   },
+//   {
+//     initialRouteName: "Launch",
+//     defaultNavigationOptions: ({ navigation }) => {
+//       return MyHeader(navigation);
+//     },
+//   }
+// );
 
 const Routes = () => {
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator
-        initialRouteName="BARQAAB MIS"
-        screenOptions={{ headerTitleAlign: "center" }}
-      >
+      <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
         <Stack.Screen
           name="BARQAAB MIS"
           component={LoginForm}
           options={{ title: "BARQAAB MIS Login Page" }}
         />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
-        <Stack.Screen name="Hr Home" component={HrHome} />
-        <Stack.Screen name="Project Home" component={ProjectHome} />
+
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboardf}
+          options={{
+            title: "Dashboard",
+            headerRight: () => (
+              <Button
+                onPress={() => alert("This is a button!")}
+                title="logout"
+                color="black"
+              />
+            ),
+          }}
+        />
+        <Stack.Screen name="Employee List" component={EmpList} />
+        <Stack.Screen name="Project List" component={ProjectHome} />
       </Stack.Navigator>
     </NavigationContainer>
   );
