@@ -40,13 +40,12 @@ const EmployeeList = () => {
   //       Alert.alert("Alert", "Network Error", [{ text: "OK" }]);
   //     }
   //   });
+
   return (
     <View>
       <Text>Employee List</Text>
       <View style={styles.container}>
         <FlatList
-          style={styles.list}
-          contentContainerStyle={styles.listContainer}
           data={data.data}
           horizontal={false}
           numColumns={2}
@@ -151,8 +150,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 1,
   },
   cardImage: {
-    height: 70,
-    width: 70,
+    borderRadius: "50%",
     alignSelf: "center",
   },
   title: {
