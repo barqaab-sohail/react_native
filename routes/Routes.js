@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Button } from "react-native";
+import Logout from "../components/logout/Logout";
 import Dashboardf from "../pages/dashboard/Dashboardf";
 import LoginForm from "../components/login/LoginForm";
 import EmployeeList from "../pages/hr/EmployeeList";
@@ -32,19 +33,12 @@ const Routes = () => {
           component={LoginForm}
           options={{ title: "BARQAAB MIS Login Page" }}
         />
-
         <Stack.Screen
           name="Dashboard"
           component={Dashboardf}
           options={{
             title: "Dashboard",
-            headerRight: () => (
-              <Button
-                onPress={() => alert("This is a button!")}
-                title="logout"
-                color="black"
-              />
-            ),
+            headerRight: () => <Logout />,
           }}
         />
         <Stack.Screen name="Employee List" component={EmpList} />

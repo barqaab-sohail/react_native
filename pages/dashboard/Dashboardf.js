@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const Dashboardf = (props) => {
-  console.log(AsyncStorage.getItem("@user_data"));
   const data = [
     {
       id: 1,

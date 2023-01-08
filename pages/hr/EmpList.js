@@ -15,11 +15,15 @@ import { useQuery } from "@tanstack/react-query";
 
 const EmpList = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const token = "Bearer 200|7zuMnwuAy1e3mToR4QQDEbv7RbPk9Zft1IKbpIkA";
   const { isLoading, error, data } = useQuery(
     ["employees"],
     () => {
-      return Api.get(END_POINT);
+      return Api.get(END_POINT, {
+        headers: {
+          Authorization: token,
+        },
+      });
     },
     {
       staleTime: 30000, //refresh on swich screen
@@ -35,9 +39,7 @@ const EmpList = () => {
   }
 
   const onChangeSearch = (query) => {
-    if (query) {
-      setSearchQuery(query);
-    }
+    setSearchQuery(query);
   };
   function clickEventListener(item) {}
 

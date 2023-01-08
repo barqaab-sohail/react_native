@@ -5,11 +5,13 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Api from "../../api/Api";
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
+import { user_login } from "../../api/user_api";
 import * as yup from "yup";
 const ReviewForm = yup.object().shape({
   email: yup.string().required().email(),
@@ -23,18 +25,55 @@ const dummyData = {
 };
 
 const LoginForm = ({ navigation }) => {
+  const userData = async () => {
+    try {
+      const token = await AsyncStorage.getItem("AccessToken");
+    } catch (e) {
+      console.log("Failed to login user.");
+    }
+  };
+  console.log(userData.token);
+  // https://github.com/samironbarai/rn-auth
+  // useEffect(() => {
+  //   if (user) {
+  //     navigation.replace("Dashboard");
+  //   } else {
+  //     navigation.replace("BARQAAB MIS");
+  //   }
+  // }, []);
   return (
     <View>
       <Formik
         initialValues={{ email: "", password: "" }}
         //validationSchema={ReviewForm}
         onSubmit={(values, actions) => {
-          const data = {
-            email: values.email,
+          user_login({
+            email: values.email.toLocaleLowerCase(),
             password: values.password,
-          };
-          AsyncStorage.setItem("@user_data", dummyData.userName);
-          navigation.navigate("Dashboard", { data: dummyData });
+          })
+            .then((result) => {
+              if (result.data.status == 200) {
+                AsyncStorage.setItem("AccessToken", result.data.token);
+                AsyncStorage.setItem("userName", result.data.userName);
+                AsyncStorage.setItem(
+                  "userDesignation",
+                  result.data.userDesignation
+                );
+                AsyncStorage.setItem("userPicture", result.data.pictureUrl);
+                navigation.navigate("Dashboard");
+              } else {
+                Alert.alert("Alert ", result.data.message, [{ text: "OK" }]);
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+          // const data = {
+          //   email: values.email,
+          //   password: values.password,
+          // };
+          // AsyncStorage.setItem("@user_data", dummyData.userName);
+          // navigation.navigate("Dashboard", { data: dummyData });
           // Api.post("mis/login", data).then((res) => {
           //   if (res.data.status === 200) {
           //     actions.resetForm();
