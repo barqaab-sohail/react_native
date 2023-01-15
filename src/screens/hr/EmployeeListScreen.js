@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import React, { useContext, useState } from "react";
-import Api from "../../api/Api";
+import Api from "../../../api/Api";
 const END_POINT = "/employees";
 import { useQuery } from "@tanstack/react-query";
-import { AuthContext } from "../../src/context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
-const EmpList = () => {
+const EmployeeListScreen = () => {
   const { userInfo } = useContext(AuthContext);
   const [searchQuery, setSearchQuery] = useState("");
   const { isLoading, error, data } = useQuery(
@@ -102,7 +102,7 @@ const EmpList = () => {
   );
 };
 
-export default EmpList;
+export default EmployeeListScreen;
 
 const styles = StyleSheet.create({
   container: {
