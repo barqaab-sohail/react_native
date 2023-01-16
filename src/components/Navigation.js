@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
 import { Text, View, Button } from "react-native";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "../screens/HomeScreen";
 import EmployeeListScreen from "../screens/hr/EmployeeListScreen";
-import ProjectHome from "../../pages/project/ProjectHome";
+import ProjectListScreen from "../screens/project/ProjectListScreen";
 import DashboardScreen from "../screens/DashboardScreen";
 import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
 import { AuthContext } from "../context/AuthContext";
 import SplashScreen from "../screens/SplashScreen";
 
@@ -40,7 +37,7 @@ const Navigation = () => {
               }}
             />
             <Stack.Screen name="Employee List" component={EmployeeListScreen} />
-            <Stack.Screen name="Project List" component={ProjectHome} />
+            <Stack.Screen name="Project List" component={ProjectListScreen} />
           </>
         ) : (
           <>
