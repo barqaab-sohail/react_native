@@ -83,7 +83,11 @@ const EmployeeListScreen = () => {
 
               <View>
                 <View
-                  style={{ alignItems: "center", justifyContent: "center" }}
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: 40,
+                  }}
                 >
                   <Text>{item.full_name}</Text>
                   <Text>{item.designation}</Text>

@@ -8,6 +8,7 @@ import DashboardScreen from "../screens/DashboardScreen";
 import LoginScreen from "../screens/LoginScreen";
 import { AuthContext } from "../context/AuthContext";
 import SplashScreen from "../screens/SplashScreen";
+import ProjectChart from "../screens/project/ProjectChart";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ const Navigation = () => {
             />
             <Stack.Screen name="Employee List" component={EmployeeListScreen} />
             <Stack.Screen name="Project List" component={ProjectListScreen} />
+            <Stack.Screen name="Project Chart" component={ProjectChart} />
           </>
         ) : (
           <>
